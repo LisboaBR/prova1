@@ -259,7 +259,8 @@ with placeholder.container(border=True):
         #         })
         # fig.update_xaxes(title='Condição de saúde')
         # fig.update_yaxes(title='Quantidade de pacientes')
-        st.write(fig4)
+        # st.write(fig4)
+        st.plotly_chart(fig4,use_container_width=True)
         with st.expander(label="Explicação"):
             st.markdown(
                         """As características que apresentam maior correlação com a variável alvo são glicose, 
@@ -288,7 +289,8 @@ with placeholder.container(border=True):
         #         })
         fig5.update_xaxes(title='Glicose')
         fig5.update_yaxes(title='Pressão sanguínea')
-        st.write(fig5)
+        # st.write(fig5)
+        st.plotly_chart(fig5,use_container_width=True)
     
 
 # st.markdown("### Visão detalhada dos graficos")
