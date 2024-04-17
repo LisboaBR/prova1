@@ -160,7 +160,7 @@ with placeholder.container(border=True):
         st.plotly_chart(fig1,use_container_width=True)
         with st.expander(label="Explicação"):
             st.markdown("""
-                        O gráfico acima nos informa que os dados estão desequilibrados. 
+                        O gráfico acima nos informa que os dados estão desbalanceados. 
                         """)
     with fig_col2:
         # st.markdown("### Quantidade de positivos e negativos")
@@ -186,7 +186,10 @@ with placeholder.container(border=True):
         fig2.update_xaxes(title='Quantidade de pacientes')
         st.plotly_chart(fig2,use_container_width=True)
         # st.write(fig2)
-        
+        with st.expander(label="Explicação"):
+            st.markdown("""
+                        O gráfico acima nos informa os valores totais de pacientes com e sem diabetes.
+                        """)
     with fig_col3:
         coluna = "glicose"
         # st.markdown(f"### Histograma {coluna}")
@@ -208,12 +211,17 @@ with placeholder.container(border=True):
                 # 'xanchor': 'center',
                 # 'yanchor': 'top', 
                 # },
-                bargap=0.1
+                # barmode='overlay',
+                bargap=0.1,
                 )
         fig3.update_xaxes(title=f'Valor {coluna}')
         fig3.update_yaxes(title='Frequência')
         st.plotly_chart(fig3,use_container_width=True)
         # st.write(fig3)
+        with st.expander(label="Explicação"):
+            st.markdown("""
+                        O gráfico acima nos informa como esta a distribuição da variável glicose, que possui grande importancia para análise da diabetes.
+                        """)
     #
 #
 #____________________________________________________________________________________________________________________________________
@@ -245,8 +253,8 @@ with placeholder2.container(border=True):
         st.plotly_chart(fig4,use_container_width=True)
         with st.expander(label="Explicação"):
             st.markdown(
-                        """As características que apresentam maior correlação com a variável diabetes são:
-                         \nglicose, insulina, IMC, espessura da pele e idade, conforme visto no gráfico acima."""
+                        """Pelo gráfico acima, as variáveis que apresentam maior correlação com a variável diabetes são:
+                         \nglicose, insulina, IMC, espessura da pele e idade."""
                         )
     
     with fig_col5:
@@ -270,14 +278,15 @@ with placeholder2.container(border=True):
         #         'xanchor': 'center',
         #         'yanchor': 'top', 
         #         })
-        fig5.update_xaxes(title='Glicose')
+        fig5.update_xaxes(title='Valor glicose')
         fig5.update_yaxes(title='Pressão sanguínea')
         # st.write(fig5)
         st.plotly_chart(fig5,use_container_width=True)
         with st.expander(label="Explicação"):
             st.markdown(
-                        """Podemos observar no gráfico acima que existe uma grande diferença entre diabéticos e não diabéticos: 
-                        a maioria das pessoas com níveis de glicose dentro da normalidade não tem diabetes."""
+                        """Podemos concluir análisando o gráfico acima, que a maioria das pessoas
+                          com níveis de glicose dentro da normalidade não tem diabetes.
+                          """
                         )
     #
 #
@@ -290,7 +299,7 @@ with placeholder3.container(border=True):
     # create two columns for charts
     fig_col6, fig_col7, fig_col8 = st.columns(3)
     with fig_col6:
-        st.markdown("<h4 style='text-align: center;'>Glicose média por idade</h4>", unsafe_allow_html=True)
+        st.markdown("<h4 style='text-align: center;'>Glicose média versus idade</h4>", unsafe_allow_html=True)
         fig6=px.line( 
             df_medias_por_idade,
             x=df_medias_por_idade["idade"],
@@ -310,6 +319,13 @@ with placeholder3.container(border=True):
         fig6.update_xaxes(title='Idade')
         st.plotly_chart(fig6,use_container_width=True)
         # st.write(fig6)
+        with st.expander(label="Explicação"):
+            st.markdown(
+                        """
+                        A partir da análise do gráfico acima, podemos inferir que com avanço 
+                        da idade, a glicose média das pacientes possuem uma tendência de aumento.
+                          """
+                        )
     with fig_col7:
         coluna = "IMC"
         # st.markdown(f"### Histograma {coluna}")
@@ -337,9 +353,15 @@ with placeholder3.container(border=True):
         fig7.update_yaxes(title='Frequência')
         st.plotly_chart(fig7,use_container_width=True)
         # st.write(fig7)
+        with st.expander(label="Explicação"):
+            st.markdown(
+                        """
+                        Depois da glicose, o IMC, é a segunda variável com maior correlação com a diabetes. O gráfico acima nos mostra como esta sua distribuição.
+                          """
+                        )
     with fig_col8:
         variavel = "pressao_media_por_idade"
-        st.markdown(f"<h4 style='text-align: center;'>Pressão média por idade</h4>", unsafe_allow_html=True)
+        st.markdown(f"<h4 style='text-align: center;'>Pressão sanguínea média versus idade</h4>", unsafe_allow_html=True)
         fig8=px.line( 
             df_medias_por_idade,
             x=df_medias_por_idade["idade"],
@@ -356,14 +378,17 @@ with placeholder3.container(border=True):
             # },
             # legend_title="Diabetes",
             )
-        fig8.update_yaxes(title='Valor pressão média')
+        fig8.update_yaxes(title='Valor pressão sanguínea média')
         fig8.update_xaxes(title='Idade')
         # fig8.show()
         st.plotly_chart(fig8,use_container_width=True)
-        # with st.expander(label="Explicação"):
-        #     st.markdown("""
-        #                 . 
-        #                 """)
+        with st.expander(label="Explicação"):
+            st.markdown(
+                        """
+                        A partir da análise do gráfico acima, podemos inferir que com avanço 
+                        da idade, a pressão sanguínea média das pacientes possuem uma tendência de aumento.
+                          """
+                        )
     #
 #
 
@@ -376,11 +401,11 @@ with placeholder4.container(border=True):
     fig_col9, fig_col10 = st.columns(2)
     with fig_col9:
         # st.markdown("### Porcentagem de diabéticos e não diabéticos")
-        st.markdown("<h4 style='text-align: center;'> Valor do insulina versus Idade</h4>", unsafe_allow_html=True)
+        st.markdown("<h4 style='text-align: center;'> Valor pressão sanguínea versus idade</h4>", unsafe_allow_html=True)
         fig9=px.area( 
             df, 
             x="idade", 
-            y= "gravidez",
+            y= "pressao_sangue",
             color="Diabetes"
             # height=500,
             # width=500,
@@ -393,15 +418,18 @@ with placeholder4.container(border=True):
             # },
             legend_title="Diabetes"
             )
+        fig9.update_yaxes(title='Valor pressão sanguínea')
+        fig9.update_xaxes(title='Idade')
         # fig9.show()
         st.plotly_chart(fig9,use_container_width=True)
-        # with st.expander(label="Explicação"):
-        #     st.markdown("""
-        #                  .
-        #                 """)
+        with st.expander(label="Explicação"):
+            st.markdown("""
+                         O gráfico acima nos mostra as pressões sanguíneas das pacientes com e sem diabetes, 
+                         e sua relação com a idade.
+                        """)
     with fig_col10:
         # st.markdown("### Porcentagem de diabéticos e não diabéticos")
-        st.markdown("<h4 style='text-align: center;'> Valor de glicose versus Idade</h4>", unsafe_allow_html=True)
+        st.markdown("<h4 style='text-align: center;'> Glicose versus idade</h4>", unsafe_allow_html=True)
         fig10=px.scatter( 
             df, 
             x="glicose", 
@@ -419,12 +447,14 @@ with placeholder4.container(border=True):
             # },
             legend_title="Diabetes"
             )
+        fig10.update_yaxes(title='Valor glicose')
+        fig10.update_xaxes(title='Idade')
         # fig10.show()
         st.plotly_chart(fig10,use_container_width=True)
         with st.expander(label="Explicação"):
             st.markdown("""
-                        Podemos concluir do gráfico acima que os jovens (≈21 – 40 anos)
-                        e as pessoas com uma concentração média de glicose têm menos probabilidade de ter diabetes.
+                        Podemos concluir pelo gráfico acima que as pacientes jovens (≈21 a ≈40 anos)
+                        e com uma concentração média de glicose, têm menos ocorrência de diabetes.
                         """)                
         #
     #
@@ -452,7 +482,7 @@ with placeholder4.container(border=True):
 
 #____________________________________________________________________________________________________________________________________
 st.markdown("""---""")
-if st.checkbox('Mostrar base de dados'):
+if st.checkbox('Exibir base de dados'):
     df
 st.markdown("""---""")
 ##____________________________________________________________________________________________________________________________________
