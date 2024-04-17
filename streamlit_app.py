@@ -52,8 +52,10 @@ with st.sidebar:
     st.markdown(":black[**Desenvolvido por:**]")
     st.markdown("Aluno: Janos Almeida")
     st.markdown("Matricula: 204400042")
-    st.markdown('<a href="mailto:janos.esteves@aluno.ufsj.edu.br">Contato</a>', unsafe_allow_html=True)
-    # st.markdown("[Contato](janos.esteves@aluno.ufsj.edu.br)")
+    st.markdown('<a href="mailto:janos.esteves@aluno.ufsj.edu.br">Email contato</a>', unsafe_allow_html=True)
+    st.markdown("""---""")
+    st.markdown("[Link notebook - Google Colab](https://colab.research.google.com/drive/11aNfVdSZ5LHvnvs8aPWDdHC3y9sRORX4)")
+    st.markdown("[Link arquivos - Gdrive](https://drive.google.com/drive/folders/1-1cLCD04JDN5BkgAoB3ezBnYdvhbHVMo?usp=sharing)")
 #
 # top-level filters
 # job_filter = st.selectbox("Selecione um variável para estudo", pd.unique(df.columns))
