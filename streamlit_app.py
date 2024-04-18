@@ -89,6 +89,7 @@ dados_dic = {
     'gravidez_medio_por_idade':df.groupby('idade')['gravidez'].mean()
 }
 
+
 # Criar DataFrame
 df_medias_por_idade = pd.DataFrame(dados_dic)
 
